@@ -2,6 +2,7 @@ from BotServer.BotFunction.InterfaceFunction import *
 from ApiServer.ApiMainServer import ApiMainServer
 from BotServer.BotFunction.JudgeFuncion import *
 import Config.ConfigServer as Cs
+import re
 
 
 class HappyFunction:
@@ -18,6 +19,10 @@ class HappyFunction:
         self.fishKeyWords = configData['functionKeyWord']['fishWord']
         self.kfcKeyWords = configData['functionKeyWord']['kfcWord']
         self.dogKeyWords = configData['functionKeyWord']['dogWord']
+        # 段子触发关键词
+        self.duanziKeyWords = configData['functionKeyWord']['duanziWord']
+        # 股票触发关键词
+        self.stockKeyWords = configData['functionKeyWord']['stockWord']
         self.shortPlayWords = configData['functionKeyWord']['shortPlayWords']
         self.morningPageKeyWords = configData['functionKeyWord']['morningPageWord']
         self.eveningPageKeyWords = configData['functionKeyWord']['eveningPageWord']
@@ -83,6 +88,39 @@ class HappyFunction:
                     f'@{senderName} {kfcText}',
                     receiver=roomId, aters=sender)
 
+            # 段子
+            elif judgeEqualListWord(content, self.duanziKeyWords):
+                duanziText = self.Ams.getDuanZi()
+                if not duanziText:
+                    self.wcf.send_text(
+                        f'@{senderName} 段子接口出现错误, 请联系超管查看控制台输出日志 ~~~',
+                        receiver=roomId, aters=sender)
+                    return
+                self.wcf.send_text(
+                    f'@{senderName} {duanziText}',
+                    receiver=roomId, aters=sender)
+            
+            # 股票
+            elif any(kw in content for kw in self.stockKeyWords):
+                # 正则提取股票代码
+                match = re.match(r'股票[\s　]*(?P<symbol>\w+)', content, flags=re.UNICODE)
+                
+                if not match:
+                    self.wcf.send_text(f'@{senderName} 格式错误，正确示例：股票 QQQ', receiver=roomId, aters=sender)
+                    return
+                
+                symbol = match.group('symbol').upper()  # 统一转为大写
+                op(f'[DEBUG] 识别到股票代码: {symbol}')  # 日志记录
+                
+                stock_info = self.Ams.getStock(symbol)
+                
+                if stock_info:
+                    response = f'@{senderName} 💰最新行情\n{stock_info}'
+                else:
+                    response = f'@{senderName} 查询失败，可能原因：\n1.非交易时段\n2.代码无效\n3.系统限流'
+                    
+                self.wcf.send_text(response, receiver=roomId, aters=sender)
+            
             # 舔狗日记
             elif judgeEqualListWord(content, self.dogKeyWords):
                 dogText = self.Ams.getDog()
@@ -125,7 +163,7 @@ class HappyFunction:
                     self.wcf.send_file(path=videoPath, receiver=roomId)
             # 点歌
             elif judgeSplitAllEqualWord(content, self.musicWords):
-                musicName = content.split(' ')[1::]
+                musicName = content.split(' ')[-1]
                 musicHexData = self.Ams.getMusic(musicName)
                 if not musicHexData:
                     self.wcf.send_text(f'@{senderName} 点歌接口出现错误, 请稍后再试 ~~~', receiver=roomId, aters=sender)

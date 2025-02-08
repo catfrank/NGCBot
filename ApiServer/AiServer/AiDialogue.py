@@ -12,6 +12,7 @@ from OutPut.outPut import op
 import requests
 import time
 import json
+import ollama
 
 
 class AiDialogue:
@@ -20,15 +21,12 @@ class AiDialogue:
         configData = Cs.returnConfigData()
         self.systemAiRole = configData['apiServer']['aiConfig']['systemAiRule']
         self.openAiConfig = {'openAiApi': configData['apiServer']['aiConfig']['openAi']['openAiApi'],
-                             'openAiKey': configData['apiServer']['aiConfig']['openAi']['openAiKey'],
-                             'openAiModel': configData['apiServer']['aiConfig']['openAi']['openAiModel']
-                             }
+                             'openAiKey': configData['apiServer']['aiConfig']['openAi']['openAiKey']}
         self.sparkAiConfig = {'sparkAiApi': configData['apiServer']['aiConfig']['sparkApi']['sparkAiApi'],
                               'sparkAiAppid': configData['apiServer']['aiConfig']['sparkApi']['sparkAiAppid'],
                               'sparkAiSecret': configData['apiServer']['aiConfig']['sparkApi']['sparkAiSecret'],
                               'sparkAiKey': configData['apiServer']['aiConfig']['sparkApi']['sparkAiKey'],
-                              'sparkDomain': configData['apiServer']['aiConfig']['sparkApi']['sparkDomain']
-                              }
+                              'sparkDomain': configData['apiServer']['aiConfig']['sparkApi']['sparkDomain']}
         self.qianfanAiConfig = {
             'qfAccessKey': configData['apiServer']['aiConfig']['qianFan']['qfAccessKey'],
             'qfSecretKey': configData['apiServer']['aiConfig']['qianFan']['qfSecretKey'],
@@ -39,28 +37,21 @@ class AiDialogue:
         }
         self.hunYuanAiConfig = {
             'hunYuanSecretId': configData['apiServer']['aiConfig']['hunYuan']['hunYuanSecretId'],
-            'hunYuanSecretKey': configData['apiServer']['aiConfig']['hunYuan']['hunYuanSecretKey'],
-            'hunYuanModel': configData['apiServer']['aiConfig']['hunYuan']['hunYuanSecretKey']
+            'hunYuanSecretKey': configData['apiServer']['aiConfig']['hunYuan']['hunYuanSecretKey']
         }
         self.kiMiConfig = {
             'kiMiApi': configData['apiServer']['aiConfig']['kiMi']['kiMiApi'],
-            'kiMiKey': configData['apiServer']['aiConfig']['kiMi']['kiMiKey'],
-            'kiMiModel': configData['apiServer']['aiConfig']['kiMi']['kiMiModel']
+            'kiMiKey': configData['apiServer']['aiConfig']['kiMi']['kiMiKey']
         }
         self.bigModelConfig = {
             'bigModelApi': configData['apiServer']['aiConfig']['bigModel']['bigModelApi'],
             'bigModelKey': configData['apiServer']['aiConfig']['bigModel']['bigModelKey'],
-            'bigModelModel': configData['apiServer']['aiConfig']['bigModel']['bigModelModel']
         }
         self.deepSeekConfig = {
             'deepSeekApi': configData['apiServer']['aiConfig']['deepSeek']['deepSeekApi'],
             'deepSeekKey': configData['apiServer']['aiConfig']['deepSeek']['deepSeekKey'],
-            'deepSeekModel': configData['apiServer']['aiConfig']['deepSeek']['deepSeekModel']
         }
-        self.localDeepSeekModelConfig = {
-            'localDeepSeekApi': configData['apiServer']['aiConfig']['localDeepSeek']['localDeepSeekApi'],
-            'localDeepSeekModel': configData['apiServer']['aiConfig']['localDeepSeek']['localDeepSeekModel']
-        }
+        self.localDeepSeekModel = configData['apiServer']['aiConfig']['localDeepSeek']['deepSeekmodel']
         self.siliconFlowConfig = {
             'siliconFlowApi': configData['apiServer']['aiConfig']['siliconFlow']['siliconFlowApi'],
             'siliconFlowKey': configData['apiServer']['aiConfig']['siliconFlow']['siliconFlowKey'],
@@ -91,7 +82,7 @@ class AiDialogue:
             return None, []
         messages.append({"role": "user", "content": f'{content}'})
         data = {
-            "model": self.openAiConfig.get('openAiModel'),
+            "model": "gpt-3.5-turbo",
             "messages": messages
         }
         headers = {
@@ -142,7 +133,7 @@ class AiDialogue:
             handler = ChunkPrintHandler()
             sparkObject = spark.generate([messages], callbacks=[handler])
             sparkContent = sparkObject.generations[0][0].text
-            return sparkContent
+            return sparkContent.replace('*', '').replace('#', '').replace('`', '')
         except Exception as e:
             op(f'[-]: 星火大模型对话接口出现错误, 错误信息: {e}')
             return None
@@ -318,7 +309,7 @@ class AiDialogue:
             req = models.ChatCompletionsRequest()
             messages.append({'Role': 'user', 'Content': content})
             params = {
-                "Model": self.hunYuanAiConfig.get('hunYuanModel'),
+                "Model": "hunyuan-pro",
                 "Messages": messages,
             }
             req.from_json_string(json.dumps(params))
@@ -326,7 +317,7 @@ class AiDialogue:
             jsonData = json.loads(Choices)
             Message = jsonData['Message']
             messages.append({'Role': Message['Role'], 'Content': Message['Content']})
-            content = Message['Content']
+            content = Message['Content'].replace('#', '').replace('*', '').replace('`', '')
             if len(messages) == 21:
                 del messages[1]
                 del messages[2]
@@ -351,7 +342,7 @@ class AiDialogue:
             return None, []
         messages.append({"role": "user", "content": f'{content}'})
         data = {
-            "model": self.kiMiConfig.get('kiMiModel'),
+            "model": "moonshot-v1-8k",
             "messages": messages
         }
         headers = {
@@ -385,7 +376,7 @@ class AiDialogue:
             return None, []
         messages.append({"role": "user", "content": f'{content}'})
         data = {
-            "model": self.bigModelConfig.get('bigModelModel'),
+            "model": "glm-4-plus",
             "messages": messages
         }
         headers = {
@@ -404,7 +395,7 @@ class AiDialogue:
         except Exception as e:
             op(f'[-]: BigMode对话接口出现错误, 错误信息: {e}')
             return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
-
+            
     def getDeepSeek(self, content, messages):
         """
         deepSeek
@@ -418,7 +409,7 @@ class AiDialogue:
             return None, []
         messages.append({"role": "user", "content": f'{content}'})
         data = {
-            "model": self.deepSeekConfig.get('deepSeekModel'),
+            "model": "deepseek-reasoner",
             "messages": messages
         }
         headers = {
@@ -433,71 +424,35 @@ class AiDialogue:
             if len(messages) == 21:
                 del messages[1]
                 del messages[2]
-            return assistant_content, messages
+            return assistant_content.replace('#', '').replace('*', '').replace('`', ''), messages
         except Exception as e:
             op(f'[-]: deepSeek对话接口出现错误, 错误信息: {e}')
             return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
 
     def getLocalDeepSeek(self, content, messages):
-        """
-        deepSeek
-        :param content: 对话内容
-        :param messages: 消息列表
-        :return:
-        """
-        op(f'[*]: 正在调用deepSeek本地对话接口... ...')
-        if not self.localDeepSeekModelConfig:
-            op(f'[-]: deepSeek本地模型未配置, 请检查相关配置!!!')
-            return None, []
-        messages.append({"role": "user", "content": f'{content}'})
-        data = {
-            "model": self.localDeepSeekModelConfig.get('localDeepSeekModel'),
-            'messages': messages,
-            'stream': False
-        }
-        try:
-            resp = requests.post(url=self.localDeepSeekModelConfig.get('localDeepSeekApi'), json=data)
-            jsonData = resp.json()
-            print(jsonData)
-            assistant_content = jsonData['message']['content'].split('</think>')[-1].strip()
-            return assistant_content, []
-        except Exception as e:
-            op(f'[-]: deepSeek本地对话接口出现错误, 错误信息: {e}')
-            return None, []
-
-    def getSiliconFlow(self, content, messages):
-        """
-        deepSeek
-        :param content: 对话内容
-        :param messages: 消息列表
-        :return:
-        """
-        op(f'[*]: 正在调用硅基流动对话接口... ...')
-        if not self.siliconFlowConfig.get('siliconFlowKey'):
-            op(f'[-]: deepSeek模型未配置, 请检查相关配置!!!')
-            return None, []
-        messages.append({"role": "user", "content": f'{content}'})
-        data = {
-            "model": self.siliconFlowConfig.get('siliconFlowModel'),
-            "messages": messages
-        }
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"{self.siliconFlowConfig.get('siliconFlowKey')}",
-        }
-        try:
-            resp = requests.post(url=self.siliconFlowConfig.get('siliconFlowApi'), headers=headers, json=data, timeout=300)
-            json_data = resp.json()
-            assistant_content = json_data['choices'][0]['message']['content']
-            messages.append({"role": "assistant", "content": f"{assistant_content}"})
-            if len(messages) == 21:
-                del messages[1]
-                del messages[2]
-            return assistant_content, messages
-        except Exception as e:
-            op(f'[-]: 硅基对话接口出现错误, 错误信息: {e}')
-            return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
-
+            """
+            deepSeek
+            :param content: 对话内容
+            :param messages: 消息列表
+            :return:
+            """
+            op(f'[*]: 正在调用deepSeek本地对话接口... ...')
+            if not self.localDeepSeekModel:
+                op(f'[-]: deepSeek本地模型未配置, 请检查相关配置!!!')
+                return None, []
+            messages.append({"role": "user", "content": f'{content}'})
+            try:
+                resp = ollama.chat(model=self.localDeepSeekModel, messages=messages)
+                assistant_content = resp['message']['content']
+                messages.append({"role": "assistant", "content": f"{assistant_content}"})
+                if len(messages) == 21:
+                    del messages[1]
+                    del messages[2]
+                return assistant_content, messages
+            except Exception as e:
+                op(f'[-]: deepSeek本地对话接口出现错误, 错误信息: {e}')
+                return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
+            
     def getAi(self, content):
         """
         处理优先级
@@ -505,7 +460,7 @@ class AiDialogue:
         :return:
         """
         result = ''
-        for i in range(1, 10):
+        for i in range(1, 9):
             aiModule = self.aiPriority.get(i)
             if aiModule == 'hunYuan':
                 result, self.hunYuanMessages = self.getHunYuanAi(content, self.hunYuanMessages)
@@ -523,13 +478,44 @@ class AiDialogue:
                 result, self.deepSeekMessages = self.getDeepSeek(content, self.deepSeekMessages)
             if aiModule == 'localDeepSeek':
                 result, self.deepSeekMessages = self.getLocalDeepSeek(content, self.deepSeekMessages)
-            if aiModule == 'siliconFlow':
-                result, self.siliconFlowMessages = self.getSiliconFlow(content, self.siliconFlowMessages)
             if not result:
                 continue
             else:
                 break
         return result
+
+    def getSiliconFlow(self, content, messages):
+            """
+            deepSeek
+            :param content: 对话内容
+            :param messages: 消息列表
+            :return:
+            """
+            op(f'[*]: 正在调用硅基流动对话接口... ...')
+            if not self.siliconFlowConfig.get('siliconFlowKey'):
+                op(f'[-]: deepSeek模型未配置, 请检查相关配置!!!')
+                return None, []
+            messages.append({"role": "user", "content": f'{content}'})
+            data = {
+                "model": self.siliconFlowConfig.get('siliconFlowModel'),
+                "messages": messages
+            }
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"{self.siliconFlowConfig.get('siliconFlowKey')}",
+            }
+            try:
+                resp = requests.post(url=self.siliconFlowConfig.get('siliconFlowApi'), headers=headers, json=data, timeout=300)
+                json_data = resp.json()
+                assistant_content = json_data['choices'][0]['message']['content']
+                messages.append({"role": "assistant", "content": f"{assistant_content}"})
+                if len(messages) == 21:
+                    del messages[1]
+                    del messages[2]
+                return assistant_content, messages
+            except Exception as e:
+                op(f'[-]: 硅基对话接口出现错误, 错误信息: {e}')
+                return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
 
     def getPicAi(self, content):
         """

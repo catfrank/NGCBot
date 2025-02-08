@@ -11,6 +11,20 @@ class ApiMainServer:
         # Ai对象实例化
         self.Ad = AiDialogue()
 
+    def getStock(self, symbol):
+        """股票API
+        :param symbol:
+        :return:
+        """
+        return Ps.Ha.getStock(symbol)
+
+    def getDuanZi(self, ):
+        """
+        段子API
+        :return:
+        """
+        return Ps.Ha.getDuanZi()
+
     def getMusic(self, musicName):
         """
         点歌API

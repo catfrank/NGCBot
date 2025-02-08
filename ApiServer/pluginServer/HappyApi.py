@@ -33,6 +33,8 @@ class HappyApi:
         self.dpWechatVideoApi = configData['apiServer']['dpWechatVideoApi']
         self.dpTaLuoApi = configData['apiServer']['dpTaLuoApi']
         self.musicApi = configData['apiServer']['musicApi']
+        self.duanziApi = configData['apiServer']['duanziApi']
+        self.stockApi = configData['apiServer']['stockApi']
 
     def downloadFile(self, url, savePath):
         """
@@ -344,10 +346,105 @@ class HappyApi:
         except Exception as e:
             op(f'[-]: 表情包Api接口出现错误, 错误信息: {e}')
             return None, None
+        
+    def getDuanZi(self, ):
+        """
+        段子api接口
+        :return:
+        """
+        op(f'[*]: 正在调用段子Api接口... ... ')
+        try:
+            result = requests.get(url=self.duanziApi, timeout=30).text
+            if result:
+                return result
+            return None
+        except Exception as e:
+            op(f'[-]: 段子Api接口出现错误, 错误信息: {e}')
 
+    def getStock(self, symbol):
+        """ 股票查询核心逻辑 """
+        op(f'[*] 启动股票查询，目标代码: {symbol}')
+        
+        try:
+            # 构造请求URL
+            api_url = self.stockApi.format(symbol)
+            op(f'[DEBUG] 完整请求地址: {api_url}')  # 关键调试点
+            
+            # 发送请求
+            response = requests.get(api_url, timeout=10)
+            response.raise_for_status()
+            
+            # 解析JSON
+            result = response.json()
+            # op(f'[DEBUG] 原始API响应: {json.dumps(result, indent=2)}')  # 输出完整响应
+
+            # 处理不同版本的API返回字段
+            time_series_key = next((k for k in result.keys() if "Time Series" in k), None)
+            
+            if time_series_key:
+                dates = sorted(result[time_series_key].keys(), reverse=True)
+                if not dates:
+                    op(f'[-] {symbol} 无有效交易数据')
+                    return None
+
+                latest_date = dates[0]
+                latest_data = result[time_series_key][latest_date]
+
+                # 防御性数据提取
+                data_map = {
+                    'open': latest_data.get('1. open'),
+                    'high': latest_data.get('2. high'),
+                    'low': latest_data.get('3. low'),
+                    'close': latest_data.get('4. close'),
+                    'volume': latest_data.get('5. volume')
+                }
+
+                # 验证数据完整性
+                if None in data_map.values():
+                    missing = [k for k,v in data_map.items() if v is None]
+                    op(f'[-] {symbol} 数据缺失字段: {missing}')
+                    return None
+
+                # 数据格式转换
+                try:
+                    formatted_data = {
+                        'open': float(data_map['open']),
+                        'high': float(data_map['high']),
+                        'low': float(data_map['low']),
+                        'close': float(data_map['close']),
+                        'volume': int(float(data_map['volume']))  # 处理科学计数法
+                    }
+                except ValueError as e:
+                    op(f'[-] {symbol} 数据格式错误: {e}')
+                    return None
+
+                # 构建格式化输出
+                return (
+                    f"\n股票代码: {symbol}\n"
+                    f"日期: {latest_date}\n"
+                    f"开盘点位: {formatted_data['open']:.4f}\n"
+                    f"最高点位: {formatted_data['high']:.4f}\n"
+                    f"最低点位: {formatted_data['low']:.4f}\n"
+                    f"收盘点位: {formatted_data['close']:.4f}\n"
+                    f"成交量: {formatted_data['volume']:,}"
+                )
+            else:
+                error_info = result.get("Error Message", "未知错误")
+                op(f'[-] {symbol} 请求失败: {error_info}')
+                return None
+        except requests.exceptions.RequestException as e:
+            op(f'[-] {symbol} 网络请求失败: {str(e)}')
+            return None
+        except Exception as e:
+            op(f'[-] {symbol} 处理异常: {str(e)}')
+            return None
+        except Exception as e:
+            op(f'[-]: 股票Api接口出现错误, 错误信息: {e}')
+            return None
 
 if __name__ == '__main__':
     Ha = HappyApi()
+    # print(Ha.getStock())
     # print(Ha.getDog())
     # print(Ha.getKfc())
     # Ha.getEmoticon('C:/Users/Administrator/Desktop/NGCBot V2.2/avatar.jpg')
@@ -358,4 +455,4 @@ if __name__ == '__main__':
     # print(Ha.getWechatVideo('14258814955767007275', '14776806611926650114_15_140_59_32_1735528000805808'))
     # print(Ha.getTaLuo())
     # print(Ha.getFish())
-    print(Ha.getMusic('晴天'))
+    # print(Ha.getMusic('晴天'))

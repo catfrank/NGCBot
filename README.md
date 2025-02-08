@@ -1,7 +1,7 @@
+<<<<<<< HEAD
 <h3 align="center">
 NGCBot V2.2
 </h3>
-
 
 ![Logo2](./README.assets/Logo2.png)
 
@@ -22,28 +22,24 @@ NGCBot V2.2
     <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/ngc660sec/NGCBot?color=blueviolet&display_name=tag&include_prereleases&label=Release">
 </div>
 
-
 ## 💫 一、项目概述
 
-**本Bot是一款基于Hook机制的微信机器人，经过两年的更新迭代，目前功能更加面向大众，此项目会不定期维护，当然如果你有代码能力，也可以自己维护。目前支持功能(请看使用帮助)，最新支持功能：Ai(Gpt，星火，千帆，混元，月之暗面，智谱，DeepSeek)，关键词拉人进群，自动群发，入群欢迎。如果你有更好的想法，请进群交流。转载此项目请勿标记原创，否则后果自负！！使用此项目人员请勿做违法犯罪行为，否则后果自负！！**
+**本 Bot 是一款基于 Hook 机制的微信机器人，经过两年的更新迭代，目前功能更加面向大众，此项目会不定期维护，当然如果你有代码能力，也可以自己维护。目前支持功能(请看使用帮助)，最新支持功能：Ai(Gpt，星火，千帆，混元，月之暗面，智谱，DeepSeek)，关键词拉人进群，自动群发，入群欢迎。如果你有更好的想法，请进群交流。转载此项目请勿标记原创，否则后果自负！！使用此项目人员请勿做违法犯罪行为，否则后果自负！！**
 
-**注意⚠️注意⚠️：此项目完全开源，如果你是给钱了才用上本项目的，请注意，不要被坑了**
+**注意 ⚠️ 注意 ⚠️：此项目完全开源，如果你是给钱了才用上本项目的，请注意，不要被坑了**
 
 **作者：云山/eXM**
 
 **项目版本：NGCBot V2.2 蛇年贺岁版**
 
-**官方公众号：NGC660安全实验室**
+**官方公众号：NGC660 安全实验室**
 
-**如果你觉得此项目不错，可以给个Star或给个赞赏 关注一下公众号**
+**如果你觉得此项目不错，可以给个 Star 或给个赞赏 关注一下公众号**
 
 <div style="display: flex;">
   <img src="./README.assets/赞赏码.jpg" alt="Image 1" style="width: 400px; height: auto; margin: 5px;">
   <img src="./README.assets/公众号.jpg" alt="Image 2" style="width: 400px; height: auto; margin: 5px;">
 </div>
-
-
-
 
 ## 📖 二、项目结构
 
@@ -102,7 +98,7 @@ NGCBot V2.2
 
 ### 3.1、Bot 快速启动
 
-**注意：此Bot只能在Windowns系统上运行！！！无法在Linux上运行安装**
+**注意：此 Bot 只能在 Windowns 系统上运行！！！无法在 Linux 上运行安装**
 
 首先请克隆代码到本地，使用命令如下
 
@@ -110,7 +106,7 @@ NGCBot V2.2
 git clone https://github.com/ngc660sec/NGCBot.git
 ```
 
-也可以直接Download
+也可以直接 Download
 
 ![image-20240919091732039](./README.assets/image-20240919091732039.png)
 
@@ -144,10 +140,9 @@ python main.py
 
 ## 3.2、视频教程
 
-视频已经上传至B站，Github放不了，要看的话大家去B站看即可
+视频已经上传至 B 站，Github 放不了，要看的话大家去 B 站看即可
 
 https://www.bilibili.com/video/BV1voqwYAEWs/
-
 
 ### 3.3、配置文件快速配置
 
@@ -164,7 +159,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 4、舔狗日记
 ```
 
-以下 `Key`按需配置，如果只使用星火 Ai，那么配置星火Key 即可
+以下 `Key`按需配置，如果只使用星火 Ai，那么配置星火 Key 即可
 
 ![image-20240919094938902](./README.assets/image-20240919094938902.png)
 
@@ -244,7 +239,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 
 记下你所有的配置，然后填入到配置文件中即可
 
-【2024.12.30】新增Key - DpKey
+【2024.12.30】新增 Key - DpKey
 
 ![image-20241230144830331](./README.assets/image-20241230144830331.png)
 
@@ -256,7 +251,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 
 扫码添加即可
 
-【2024.1.07】新增DeepSeek
+【2024.1.07】新增 DeepSeek
 
 访问目标[官网](https://www.deepseek.com/)
 
@@ -264,9 +259,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 
 ![image-20250107100823446](./README.assets/image-20250107100823446.png)
 
-新人注册500w Token，总结群聊消息用的是此模型
-
-
+新人注册 500w Token，总结群聊消息用的是此模型
 
 ## 🧐 4、使用帮助
 
@@ -340,7 +333,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 
 卡片类，需要先拿到卡片的各种信息，在终端中会输出
 
-`title `字段，不能太长，其中 `{}` 代表进入群聊的好友名称 
+`title `字段，不能太长，其中 `{}` 代表进入群聊的好友名称
 
 ---
 
@@ -382,7 +375,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 
 ![image-20240102142435128](./README.assets/image-20240102142435128.png)
 
-**添加积分：需要@用户，可@多个用户，注意空格。使用如下【@群友1加空格[积分]】**
+**添加积分：需要@用户，可@多个用户，注意空格。使用如下【@群友 1 加空格[积分]】**
 
 ![image-20240102143144061](./README.assets/image-20240102143144061.png)
 
@@ -400,7 +393,7 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 
 1. 图片
 2. 视频
-3. KFC文案
+3. KFC 文案
 4. 舔狗日记
 5. 早报
 6. 晚报
@@ -408,9 +401,9 @@ https://www.bilibili.com/video/BV1voqwYAEWs/
 8. 短剧搜索功能
 9. 视频号解析下载
 10. 抖音视频解析下载
-11. Help功能菜单
+11. Help 功能菜单
 
-演示几个用法，基本都是这样用的，查询类功能注意空格⚠️
+演示几个用法，基本都是这样用的，查询类功能注意空格 ⚠️
 
 **图片功能**
 
@@ -452,8 +445,8 @@ meme download
 
 1. 签到（签到获得的积分可在配置文件中设置）
 2. 赠送积分
-3. Md5查询
-4. 微步IP查询
+3. Md5 查询
+4. 微步 IP 查询
 5. 积分查询
 6. Ai 对话
 7. Ai 画图
@@ -506,13 +499,11 @@ meme download
 
 ![image-20240919105653096](./README.assets/image-20240919105653096.png)
 
-
-
 ## ❓ 5、一些常见的问题
 
 **有问题！看配置文件！看配置文件！看配置文件！有些人配置文件不配置，在这问为什么用不了？那我问问你你不拿碗不拿筷子怎么吃饭？**
 
-其它问题，若是Bug请提供给群主即可，配置文件空着的都要自行配置，这里并不提供
+其它问题，若是 Bug 请提供给群主即可，配置文件空着的都要自行配置，这里并不提供
 
 ```
 1、启动失败问题
@@ -556,7 +547,7 @@ meme download
 - 检查wcf版本和微信版本是否一致
 ```
 
-### ❌ 5.1、Bug提交处
+### ❌ 5.1、Bug 提交处
 
 关注微信公众号，后台留言（不做回复，请进群交流），添加机器人回复 `Bot交流群` 拉你进群！（机器人不常开，看到会拉群）
 
@@ -565,18 +556,16 @@ meme download
    <img src="./README.assets/113191704454837_.pic.jpg" alt="Image 1" style="width: 400px; height: auto; margin: 5px;">
 </div>
 
-
-
 ### 💰 5.2、会员群聊处
 
-**前言**：在项目更新的过程中发现许许多多的同学不会配置项目，也有许多的同学想要接入自己的API但又没学过 `Python` 。所以今天（2024,12,04）宣布建立会员交流群，主要解决以下几个问题：
+**前言**：在项目更新的过程中发现许许多多的同学不会配置项目，也有许多的同学想要接入自己的 API 但又没学过 `Python` 。所以今天（2024,12,04）宣布建立会员交流群，主要解决以下几个问题：
 
 1. 不会配置项目，不会启动项目
-2. 接入API问题，不会接入自己的API
+2. 接入 API 问题，不会接入自己的 API
 3. 想要实现自己的功能，比如（客服）
 4. 等等... ...
 
-进入付费群聊后会在群内进行指导必要时可提供远程协助，另外会开设特定课程如：Python基础课程，机器人使用教程（视屏），API接入课程（指南），等等(还没想好)
+进入付费群聊后会在群内进行指导必要时可提供远程协助，另外会开设特定课程如：Python 基础课程，机器人使用教程（视屏），API 接入课程（指南），等等(还没想好)
 
 另外还会发布机器人+其它大模型的结合使用教程
 
@@ -590,18 +579,16 @@ meme download
   <img src="./README.assets/img_v3_02h8_a1c2e430-6fe2-4af9-a0fc-22a0af86c41g.jpg" alt="Image 1" style="width: 400px; height: auto; margin: 5px;">
 </div>
 
-### ❗️  5.3、谨防诈骗
+### ❗️ 5.3、谨防诈骗
 
 如下：
 
-首先此项目启动不需要VPN，另外跟有没有公网IP也没有关系，只需要你电脑配置能登微信，能联网即可
+首先此项目启动不需要 VPN，另外跟有没有公网 IP 也没有关系，只需要你电脑配置能登微信，能联网即可
 
 <div style="display: flex;">
   <img src="./README.assets/img_v3_02h8_7ea23767-38c1-41e9-8b06-3a0743a5559g.jpg" alt="Image 1" style="width: 400px; height: auto; margin: 5px;">
    <img src="./README.assets/img_v3_02h8_1f93bcd8-0880-40b0-aeef-c21c77e7910g.jpg" alt="Image 1" style="width: 400px; height: auto; margin: 5px;">
 </div>
-
-
 
 ## 📝 6、更新日志
 
@@ -623,7 +610,7 @@ meme download
 
 ### 【2024.12.30】蛇年贺岁版
 
-推送Bot V2.2蛇年贺岁版 新增抖音视频解析，视频号解析，塔罗牌功能，优化一些代码，修复一些Bug
+推送 Bot V2.2 蛇年贺岁版 新增抖音视频解析，视频号解析，塔罗牌功能，优化一些代码，修复一些 Bug
 
 抖音视频解析效果：
 
@@ -656,25 +643,21 @@ meme download
 
 ![image-20250107100504390](./README.assets/image-20250107100504390.png)
 
-
-
-
-
 ## 🙏🏻 7、鸣谢：
 
 https://github.com/lich0821/WeChatFerry
 
-感谢查克大佬提供的微信Python库！！！大家可以使用此框架进行开发！
+感谢查克大佬提供的微信 Python 库！！！大家可以使用此框架进行开发！
 
 ## 😘 8、支持
 
 感谢以下团队的大力支持
 
-- NGC660安全实验室
-- CKCSec安全研究院
-- 渊龙Sec安全团队
+- NGC660 安全实验室
+- CKCSec 安全研究院
+- 渊龙 Sec 安全团队
 
-## 👈 9、感谢国产社区GitCode
+## 👈 9、感谢国产社区 GitCode
 
 如果无法访问 `Github` 也可以访问 `GitCode`
 
@@ -682,9 +665,12 @@ https://github.com/lich0821/WeChatFerry
   <img src="./README.assets/img_v3_02h8_bae897a8-e165-4051-9a52-f0187c5c236g.png" alt="Image 1" style="width: 100%; height: auto; margin: 5px;" onclick="https://gitcode.com/ngc660sec/NGCBot">
 </div>
 
-
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ngc660sec/NGCBot&type=Date&theme=dark" />
    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ngc660sec/NGCBot&type=Date" />
    <img style="width:100%" src="https://api.star-history.com/svg?repos=ngc660sec/NGCBot&type=Date" />
  </picture>
+=======
+# NGCBot
+基于HOOK的微信机器人，支持多种功能！
+>>>>>>> upstream/main

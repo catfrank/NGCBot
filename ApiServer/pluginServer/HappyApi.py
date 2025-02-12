@@ -33,8 +33,6 @@ class HappyApi:
         self.dpWechatVideoApi = configData['apiServer']['dpWechatVideoApi']
         self.dpTaLuoApi = configData['apiServer']['dpTaLuoApi']
         self.musicApi = configData['apiServer']['musicApi']
-        self.duanziApi = configData['apiServer']['duanziApi']
-        self.stockApi = configData['apiServer']['stockApi']
 
     def downloadFile(self, url, savePath):
         """

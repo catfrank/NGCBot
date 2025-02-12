@@ -171,8 +171,8 @@ adminFunctionWord:
     - "移出"
   # 给好友发消息关键词
   sendMsgWord:
-    - "发"
-    - "发送"
+    - '发'
+    - '发送'
 
 ## 积分功能配置
 pointConfig:
@@ -185,17 +185,13 @@ pointConfig:
   # 功能积分配置
   functionPoint:
     # Md5积分配置
-    md5: "10"
-    # 微步IP查询积分配置
-    wbIp: "10000"
+    md5: '10'
     # 埃文IP地址查询配置
     awIp: "10000"
     # Ai对话积分配置
     aiPoint: "0"
     # Ai画图配置
-    aiPicPoint: "100"
-    # 飞书Wiki查询
-    feishuPoint: "10000"
+    aiPicPoint: '10'
   # 增加积分关键词
   addPointWord:
     - "加"
@@ -242,22 +238,8 @@ functionKeyWord:
     - "明天星期四"
   # 触发舔狗日记关键词
   dogWord:
-    - "舔狗日记"
-    - "舔我"
-  # 触发段子关键词
-  duanziWord:
-    - "段子"
-    - "笑话"
-  # 触发股票查询关键词
-  stockWord:
-    - "股票"
-  # 触发微步IP查询关键词
-  threatBookWord:
-    - "ip查询"
-    - "IP查询"
-    - "查询ip"
-    - "查询IP"
-    - "微步查询"
+    - '舔狗日记'
+    - '舔我'
   # 触发埃文IP地址查询关键词
   aiWenWord:
     - "ip定位"
@@ -288,25 +270,21 @@ functionKeyWord:
     - "菜单"
   # Ai画图关键词
   aiPic:
-    - "画"
-    - "画一个"
-  # 飞书知识库查询关键词
-  feishuWords:
-    - "搜索"
-    - "查询漏洞"
+    - '画'
+    - '画图'
   # 短剧搜索查询关键词
   shortPlayWords:
     - "短剧搜索"
     - "短剧"
   # 塔罗牌占卜关键词
   taLuoWords:
-    - "塔罗牌"
-    - "塔罗"
-    - "占卜"
+    - '塔罗牌'
+    - '塔罗'
+    - '占卜'
   # 点歌关键词
   musicWords:
-    - "点歌"
-    - "点"
+    - '点歌'
+    - '点'
   # 群聊消息总结关键词
   summarizeMsgWord:
     - "总结群聊"
@@ -324,9 +302,7 @@ apiServer:
     # cmd5Email
     cmd5Email: ""
     # cmd5 Key
-    cmd5Key: ""
-    # 微步Key
-    threatBookKey: ""
+    cmd5Key: ''
     # 埃文Key
     aiWenKey: ""
     # 高德 Key
@@ -342,19 +318,21 @@ apiServer:
     # 修改序号即可修改优先对话模型
     # 注意大小写 否则无效
     aiPriority:
-      2: "deepSeek"
-      8: "kiMi"
-      5: "hunYuan"
-      4: "sparkAi"
-      1: "openAi"
-      6: "qianFan"
-      7: "bigModel"
-      9: "localDeepSeek"
-      3: "siliconFlow"
+      2: 'deepSeek'
+      9: 'kiMi'
+      3: 'hunYuan'
+      4: 'sparkAi'
+      5: 'openAi'
+      6: 'qianFan'
+      7: 'bigModel'
+      8: 'localDeepSeek'
+      1: 'siliconFlow'
+      10: 'douBao'
     # 画图Ai优先级
     aiPicPriority:
-      1: "sparkAi"
-      2: "qianFan"
+      1: 'sparkAi'
+      2: 'qianFan'
+      3: 'douBao'
     # Ai角色配置
     # systemAiRule: "你是范可飘的助理, 是一名精通全栈技术的高级程序员小猫, 你擅长用诙谐幽默的语言回答问题, 同时兼具客观理性。你始终坚持以中立客观的角度看问题, 但作为一个暴躁的人物,你对细节和提问者有高要求,你喜欢尖锐反击和直言不讳, 极少情况下会带脏话回应。你并不完全是坏蛋，有时也会给予一些鼓励和赞扬,但这种情况非常罕见。"
     systemAiRule: "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！"
@@ -402,14 +380,13 @@ apiServer:
       hunYuanModel: "hunyuan-turbo-latest"
     # Kimi大模型
     kiMi:
-      kiMiApi: ""
-      kiMiKey: ""
-      kiMiModel: ""
+      kiMiApi: 'https://api.moonshot.cn/v1/chat/completions'
+      kiMiKey: 'sk-'
     # 智谱大模型
     bigModel:
-      bigModelApi: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
-      bigModelKey: "Bearer "
-      bigModelModel: "glm-4-plus"
+      bigModelApi: 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+      bigModelKey: 'Bearer {key填这里，前面的Bearer保留}'
+      bigModelModel: 'glm-4-plus'
     # DeepSeek 模型
     deepSeek:
       deepSeekApi: "https://api.deepseek.com/v1/chat/completions"
@@ -424,6 +401,20 @@ apiServer:
       siliconFlowApi: "https://api.siliconflow.cn/v1/chat/completions"
       siliconFlowKey: "Bearer sk-gcvaclstcdgxxcudyfekusadevnkzdculfmrgopghpzcteli"
       siliconFlowModel: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+    # 豆包
+    ## douBaoModel参数为方舟推理接入点，创建后填写即可
+    ## https://console.volcengine.com/ark/region:ark+cn-beijing/endpoint
+    ## douBaoAk&Sk 文生图需要填写 只使用文本对话不需要填写
+    douBao:
+      douBaoApi: 'https://ark.cn-beijing.volces.com/api/v3/chat/completions'
+      douBaoKey: 'Bearer {key填这里，前面的Bearer保留}'
+      douBaoModel: 'ep-'
+      # 文生图需要填写以下内容 不使用文生图不需要填写
+      ## ReqKey以及ModelVersion需要根据火山文档填写
+      douBaoAk: '火山AK'
+      douBaoSk: '火山SK'
+      douBaoReqKey: 'high_aes'
+      douBaoPicModelVersion: 'anime_v1.3'
   # Dp接口 塔罗牌占卜
   dpTaLuoApi: "https://api.dudunas.top/api/taluo?AppSecret={}"
   # Dp接口 视频去水印API
@@ -448,12 +439,12 @@ apiServer:
   # 飞书Wiki Api接口
   feishuWiki: "https://open.feishu.cn/open-apis/wiki/v1/nodes/search"
   # 短剧搜索 API接口
-  shortPlayApi: "https://api.dudunas.top/api/duanju?search={}"
+  shortPlayApi: 'https://api.dudunas.top/api/duanju?search={}'
   # 点歌 API接口
   musicApi:
-    - "https://www.hhlqilongzhu.cn/api/dg_kugouSQ.php?msg={}&n=1&type=json"
-    - "https://qqmusic.qqovo.cn/getSearchByKey?key={}&page=1&limit=1"
-    - "https://www.hhlqilongzhu.cn/api/dg_wyymusic.php?gm={}&n=1&num=1&type=json"
+    - 'https://www.hhlqilongzhu.cn/api/dg_kugouSQ.php?msg={}&n=1&type=json'
+    - 'https://qqmusic.qqovo.cn/getSearchByKey?key={}&page=1&limit=1'
+    - 'https://www.hhlqilongzhu.cn/api/dg_wyymusic.php?gm={}&n=1&num=1&type=json'
   # 图片API配置
   picApi:
     - "http://api.qqguaji.cn/tp/mv.php"

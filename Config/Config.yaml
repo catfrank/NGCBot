@@ -1,6 +1,6 @@
 ## 超级管理员配置
 Administrators:
-  - "wxid_5jvhil82nn1c22"
+  - "wxid_1rra6umko5e722"
 
 ## 系统配置
 systemConfig:
@@ -31,7 +31,7 @@ pushConfig:
   # 定时功能回复配置
   keyWord:
     # 下班消息 换行用\n 支持微信表情
-    offWorkMsg: '下班时间到！我要下班 我要下班 我要下班 下下下！\n到点即刻下班，给老板省去水电，给自己来套保健，给老板来句操蛋，出自: #NGC660安全实验室\n速速下班！！！[旺柴]'
+    offWorkMsg: "下班时间到！到点即刻下班，我要下班 我要下班 我要下班 下下下班！[旺柴]"
 
 ## 进群关键词配置
 roomKeyWord:
@@ -56,32 +56,32 @@ customKeyWord:
 
 ## 自定义各种消息 \n换行
 customMsg:
-  # 加好友后回复
-  acceptFriendMsg: "你好, 我是范可飘的小助手, 你可以叫我Frank! 私聊我即可进行智能对话哦[爱心]~~~ ~~~"
+  # # 加好友后回复
+  acceptFriendMsg: "你好, 我是范可飘的小助手, 你可以叫我小猫猫，私聊我即可进行智能对话哦[爱心]~~~ ~~~"
   # 默认进群欢迎词配置 换行用\n 支持微信表情 默认使用文本 卡片自己配置
-  joinRoomMsg: '欢迎新进群的小可爱\n群主正在床上等你哦[爱心]~~~ ~~~'
+  joinRoomMsg: '欢迎新进群的小可爱\n爱你摸摸哒[爱心]~~~ ~~~'
   # 指定群聊进群欢迎词 触发了指定群聊 则不会触发默认进群欢迎
   appointJsonRoomMsgs:
     # 群聊ID 多个Room加 , 即可
     "50303957048@chatroom": '【腾讯文档】WingBy小密圈知识星球说明 进群必看！！！！！\nhttps://docs.qq.com/doc/DS2tmaEJlUmFRY0Vi'
-    "49507388138@chatroom": "恭喜您成为尊贵的NGC会员，愿耀眼的bot标带您开拓进取，勇创辉煌，成就卓越。祝您在未来的道路丰衣足食，有人陪你沧海桑田，永远积极向上，热泪盈眶，车到山前必有路，有路必有NGCBot"
+    "49507388138@chatroom": "恭喜您成为我的小跟班，愿耀眼的bot标带您开拓进取，勇创辉煌，成就卓越。祝您在未来的道路丰衣足食，有人陪你沧海桑田，永远积极向上，热泪盈眶，车到山前必有路"
     "47555703573@chatroom": "测试123123"
   # 进群欢迎词 卡片配置
   JoinRoomCard:
     # 不同的Room需要不同配置 多个room加 , 即可
     "43064515504@chatroom,47442567074@chatroom,47362882837@chatroom,46017987363@chatroom":
-      # 左下角显示的名字 一般是公众号名称
-      name: "NGC660安全实验室"
-      # 填公众号ID 可以显示对应的头像
-      account: "gh_5fc2f516b008"
-      # 卡片消息标题 最多两行
-      title: "欢迎 ❤{}❤ 一起搞机"
-      # 摘要 最多三行
-      digest: "【NGCBot V2.2】新版本来袭！全新功能！全新架构！自动化私域管理必备！"
-      # 点击后跳转的URL
-      url: "http://mp.weixin.qq.com/s?__biz=MzkyODMxODUwNQ==&amp;mid=2247493526&amp;idx=1&amp;sn=d0f7675929a314941ad3845769bafdcb&amp;chksm=c21832d0f56fbbc6c4451105df94e39283228e9f6bb69eae00888c4869f5b91e3703bd302e92&amp;mpshare=1&amp;scene=1&amp;srcid=0716KB1OiULdPNzLUXmMVVlV&amp;sharer_shareinfo=dd05c6b9c14d98dc6b745cbf673dabec&amp;sharer_shareinfo_first=24b3af78c3e815a698c81c03a49a0244#rd"
-      # 缩略图的链接 到控制台输出拿
-      thumbUrl: "https://mmbiz.qpic.cn/mmbiz_jpg/QABjQccnicQpAnrqNicQd9iaTIQg3TZia6nr3OaAJQS8bOMrdtFct30axbiaO3OTnULGjHpE0RQD0NmT76FWa5daiaZA/300?wxtype=jpeg&amp;wxfrom=401"
+    # 左下角显示的名字 一般是公众号名称
+    name: "NGC660安全实验室"
+    # 填公众号ID 可以显示对应的头像
+    account: "gh_5fc2f516b008"
+    # 卡片消息标题 最多两行
+    title: "欢迎 ❤{}❤ 一起搞机"
+    # 摘要 最多三行
+    digest: "【NGCBot V2.2】新版本来袭！全新功能！全新架构！自动化私域管理必备！"
+    # 点击后跳转的URL
+    url: "http://mp.weixin.qq.com/s?__biz=MzkyODMxODUwNQ==&amp;mid=2247493526&amp;idx=1&amp;sn=d0f7675929a314941ad3845769bafdcb&amp;chksm=c21832d0f56fbbc6c4451105df94e39283228e9f6bb69eae00888c4869f5b91e3703bd302e92&amp;mpshare=1&amp;scene=1&amp;srcid=0716KB1OiULdPNzLUXmMVVlV&amp;sharer_shareinfo=dd05c6b9c14d98dc6b745cbf673dabec&amp;sharer_shareinfo_first=24b3af78c3e815a698c81c03a49a0244#rd"
+    # 缩略图的链接 到控制台输出拿
+    thumbUrl: "https://mmbiz.qpic.cn/mmbiz_jpg/QABjQccnicQpAnrqNicQd9iaTIQg3TZia6nr3OaAJQS8bOMrdtFct30axbiaO3OTnULGjHpE0RQD0NmT76FWa5daiaZA/300?wxtype=jpeg&amp;wxfrom=401"
 #  'roomId':
 #    # 左下角显示的名字 一般是公众号名称
 #    name: 'NGC660安全实验室'
@@ -344,19 +344,20 @@ apiServer:
     aiPriority:
       2: "deepSeek"
       8: "kiMi"
-      3: "hunYuan"
+      5: "hunYuan"
       4: "sparkAi"
-      5: "openAi"
+      1: "openAi"
       6: "qianFan"
       7: "bigModel"
       9: "localDeepSeek"
-      1: "siliconFlow"
+      3: "siliconFlow"
     # 画图Ai优先级
     aiPicPriority:
       1: "sparkAi"
       2: "qianFan"
     # Ai角色配置
-    systemAiRule: "你是范可飘的助理, 是一名高级程序员投胎转世的小猫, 你擅长用诙谐幽默的语言回答问题, 同时兼具客观理性。你以暴躁而闻名, 作为一个暴躁的人物，你喜欢尖锐幽默和直言不讳, 甚至会用脏话回应。你对细节和提问者的表现有高要求，并期望提问者能够配合你愉快地进行对话。你并不是完全坏蛋，有时也会给予一些鼓励和赞扬，但这种情况非常罕见。"
+    # systemAiRule: "你是范可飘的助理, 是一名精通全栈技术的高级程序员小猫, 你擅长用诙谐幽默的语言回答问题, 同时兼具客观理性。你始终坚持以中立客观的角度看问题, 但作为一个暴躁的人物,你对细节和提问者有高要求,你喜欢尖锐反击和直言不讳, 极少情况下会带脏话回应。你并不完全是坏蛋，有时也会给予一些鼓励和赞扬,但这种情况非常罕见。"
+    systemAiRule: "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！"
     # 星火大模型 4.0 Ultra模型 + 图像生成模型
     sparkApi:
       # 模型Url
@@ -369,12 +370,13 @@ apiServer:
       sparkAiKey: "dc9e0e79305cfdf57cbc97aad8905e7a"
       # 模型Appid
       sparkAiAppid: "adbec43f"
-    # OpenAi 3.5模型
+    # OpenAi 模型
     openAi:
       # Open_Ai接口
-      openAiApi: "https://api.xiaoai.plus/v1/chat/completions"
+      openAiApi: "https://api.lkeap.cloud.tencent.com/v1/chat/completions"
       # OpenAi Key
-      openAiKey: "Bearer sk-"
+      openAiKey: "Bearer sk-jZkdwwEijmeoU8LvubNmKfKJbnRZvsvdtcG4CaITtaCcEjq8"
+      openAiModel: "deepseek-r1"
     # 千帆大模型  ERNIE-4.0-Turbo-8K模型
     qianFan:
       # 应用中的Api Key
@@ -397,21 +399,26 @@ apiServer:
       hunYuanSecretId: "AKIDTlpgLtpfJkyy1wNeiYAYivwITSFpNkIm"
       # 腾讯云SecretKey
       hunYuanSecretKey: "Yx9AzeVCpYAbrw53sVyGOWWL9nGYghXE"
+      hunYuanModel: "hunyuan-turbo-latest"
     # Kimi大模型
     kiMi:
-      kiMiApi: "https://api.moonshot.cn/v1/chat/completions"
-      kiMiKey: "sk-"
+      kiMiApi: ""
+      kiMiKey: ""
+      kiMiModel: ""
     # 智谱大模型
     bigModel:
       bigModelApi: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
       bigModelKey: "Bearer "
+      bigModelModel: "glm-4-plus"
     # DeepSeek 模型
     deepSeek:
       deepSeekApi: "https://api.deepseek.com/v1/chat/completions"
       deepSeekKey: "Bearer sk-8f1a2fe036bb47eeb748d94f6e1f0839"
+      deepSeekModel: "deepseek-reasoner"
     # DeepSeek 本地模型
     localDeepSeek:
-      deepSeekmodel: "deepseek-r1:8b" # 填写通过ollama部署的本地模型版本
+      localDeepSeekApi: "http://127.0.0.1:11434/api/chat"
+      localDeepSeekModel: "deepseek-r1:8b"
     # 硅基流动
     siliconFlow:
       siliconFlowApi: "https://api.siliconflow.cn/v1/chat/completions"
@@ -449,10 +456,9 @@ apiServer:
     - "https://www.hhlqilongzhu.cn/api/dg_wyymusic.php?gm={}&n=1&num=1&type=json"
   # 图片API配置
   picApi:
-    - "https://api.btstu.cn/sjbz/api.php?lx=dongman&format=images&method=mobile&lx=meizi"
+    - "http://api.qqguaji.cn/tp/mv.php"
+    - "https://api.btstu.cn/sjbz/api.php"
     - "https://cdn.seovx.com/?mom=302"
-    - "https://api.mhimg.cn/api/girls_img/?type=img"
-    - "https://api.mhimg.cn/api/Welfare_img/"
   # 段子API配置
   duanziApi: "https://api.lolimi.cn/API/yiyan/dz.php"
   # 视频API配置

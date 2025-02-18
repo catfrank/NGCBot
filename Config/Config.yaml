@@ -328,8 +328,8 @@ apiServer:
       # Open_Ai接口
       openAiApi: "https://api.lkeap.cloud.tencent.com/v1/chat/completions"
       # OpenAi Key
-      openAiKey: "Bearer sk-jZkdwwEijmeoU8LvubNmKfKJbnRZvsvdtcG4CaITtaCcEjq8"
-      openAiModel: "deepseek-r1"
+      openAiKey: 'Bearer {key填这里，前面的Bearer保留}'
+      openAiModel: 'gpt-3.5-turbo'
     # 千帆大模型  ERNIE-4.0-Turbo-8K模型
     qianFan:
       # 应用中的Api Key
@@ -345,7 +345,7 @@ apiServer:
       # 应用中的Secret Key
       qfPicSecretKey: ""
       # 应用中的应用ID
-      qfPicAppid: "92991265"
+      qfPicAppid: ''
     # 腾讯混元大模型, 有免费额度
     hunYuan:
       # 腾讯云SecretId
@@ -355,14 +355,14 @@ apiServer:
       hunYuanModel: "hunyuan-turbo-latest"
     # Kimi大模型
     kiMi:
-      kiMiApi: "https://api.moonshot.cn/v1/chat/completions"
-      kiMiKey: "sk-"
-      kiMiModel: "moonshot-v1-8k"
+      kiMiApi: 'https://api.moonshot.cn/v1/chat/completions'
+      kiMiKey: 'sk-'
+      kiMiModel: 'moonshot-v1-8k'
     # 智谱大模型
     bigModel:
-      bigModelApi: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
-      bigModelKey: "Bearer {key填这里，前面的Bearer保留}"
-      bigModelModel: "glm-4-plus"
+      bigModelApi: 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+      bigModelKey: 'Bearer {key填这里，前面的Bearer保留}'
+      bigModelModel: 'glm-4-plus'
     # DeepSeek 模型
     deepSeek:
       deepSeekApi: "https://api.deepseek.com/v1/chat/completions"
@@ -396,9 +396,7 @@ apiServer:
   # Dp接口 视频去水印API
   dpVideoAnalysisAPi: "https://api.dudunas.top/api/qushuiyin?AppSecret={}&text={}"
   # Dp接口 视频号解析
-  dpWechatVideoApi: "https://api.dudunas.top/api/vxdown?AppSecret={}&objectId={}&objectNonceId={}"
-  # 微步查询API
-  threatBookApi: "https://api.threatbook.cn/v3/ip/query"
+  dpWechatVideoApi: 'https://api.dudunas.top/api/vxdown?AppSecret={}&objectId={}&objectNonceId={}'
   # 高德地图API
   gaoDeApi: "https://restapi.amap.com/v3/staticmap"
   # 埃文IP地址查询API
@@ -602,7 +600,7 @@ emoConfig:
     "膜拜": "worship"
     "致电": "you_should_call"
   twoPicEwo:
-    "揍": "beat_up"
-    "击剑": "fencing"
-    "亲": "kiss"
-    "贴贴": "rub"
+    '揍': 'beat_up'
+    '击剑': 'fencing'
+    '亲': 'kiss'
+    '贴贴': 'rub'

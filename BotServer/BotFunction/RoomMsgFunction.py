@@ -34,10 +34,10 @@ class RoomMsgFunction:
             if judgeEqualListWord(content, self.summarizeMsgKeyWords):
                 roomName = getIdName(self.wcf, roomId)
                 aiContent = f'群聊名称: {roomName}\n{self.Dms.showRoomContent(roomId)}'
-                # aiMessages = [{
-                #     "role": "system",
-                #     "content": "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！",
-                # }]
+                aiMessages = [{
+                    "role": "system",
+                    "content": "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！",
+                }]
                 # assistant_content, Mes = self.Ams.getDeepSeek(aiContent, aiMessages)
                 assistant_content = self.Ams.getAi(aiContent)
                 if assistant_content:

@@ -59,20 +59,20 @@ class PointFunction:
                     receiver=roomId,
                     aters=sender)
             # 签到口令提示
-            elif judgeEqualWord(content, '签到'):
-                self.wcf.send_text(
-                    f'@{senderName} 签到失败\n签到口令已改为：{self.signKeyWord}',
-                    receiver=roomId, aters=sender)
-            # 签到
-            elif judgeEqualWord(content, self.signKeyWord):
-                if not self.Dms.sign(wxId=sender, roomId=roomId):
-                    self.wcf.send_text(
-                        f'@{senderName} 签到失败, 当日已签到！！！\n当前剩余积分: {self.Dms.searchPoint(sender, roomId)}',
-                        receiver=roomId, aters=sender)
-                    return
-                self.wcf.send_text(
-                    f'@{senderName} 签到成功, 当前剩余积分: {self.Dms.searchPoint(sender, roomId)}',
-                    receiver=roomId, aters=sender)
+            # elif judgeEqualWord(content, '签到'):
+            #     self.wcf.send_text(
+            #         f'@{senderName} 签到失败\n签到口令已改为：{self.signKeyWord}',
+            #         receiver=roomId, aters=sender)
+            # # 签到
+            # elif judgeEqualWord(content, self.signKeyWord):
+            #     if not self.Dms.sign(wxId=sender, roomId=roomId):
+            #         self.wcf.send_text(
+            #             f'@{senderName} 签到失败, 当日已签到！！！\n当前剩余积分: {self.Dms.searchPoint(sender, roomId)}',
+            #             receiver=roomId, aters=sender)
+            #         return
+            #     self.wcf.send_text(
+            #         f'@{senderName} 签到成功, 当前剩余积分: {self.Dms.searchPoint(sender, roomId)}',
+            #         receiver=roomId, aters=sender)
             # 查询积分
             elif judgeEqualListWord(content, self.searchPointKeyWord):
                 userPoint = self.Dms.searchPoint(sender, roomId)

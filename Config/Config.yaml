@@ -171,8 +171,8 @@ adminFunctionWord:
     - "移出"
   # 给好友发消息关键词
   sendMsgWord:
-    - '发'
-    - '发送'
+    - "发"
+    - "发送"
 
 ## 积分功能配置
 pointConfig:
@@ -185,13 +185,13 @@ pointConfig:
   # 功能积分配置
   functionPoint:
     # Md5积分配置
-    md5: '10'
+    md5: "10"
     # 埃文IP地址查询配置
     awIp: "10000"
     # Ai对话积分配置
     aiPoint: "0"
     # Ai画图配置
-    aiPicPoint: '10'
+    aiPicPoint: "10"
   # 增加积分关键词
   addPointWord:
     - "加"
@@ -213,33 +213,19 @@ pointConfig:
 functionKeyWord:
   # 触发美女图片关键词
   picWord:
-    - "图片"
-    - "妹子"
-    - "色图"
-    - "色色"
+    - "Picture"
   # 触发美女视频关键词
   videoWord:
-    - "视频"
-    - "成人视频"
-    - "18禁"
+    - "Video"
   # 触发摸鱼日记关键词
   fishWord:
-    - "摸鱼日记"
-    - "摸鱼日历"
+    - "fish日记"
   # 触发疯狂星期四文案关键词
   kfcWord:
-    - "Kfc"
     - "疯狂星期四"
-    - "星期四"
-    - "今天星期四"
-    - "KFC"
-    - "kfc"
-    - "v我50"
-    - "明天星期四"
   # 触发舔狗日记关键词
   dogWord:
-    - '舔狗日记'
-    - '舔我'
+    - "舔dog日记"
   # 触发埃文IP地址查询关键词
   aiWenWord:
     - "ip定位"
@@ -247,12 +233,10 @@ functionKeyWord:
     - "定位"
   # 触发早报关键词
   morningPageWord:
-    - "早报"
-    - "早间咨询"
+    - "morning报"
   # 触发晚报关键词
   eveningPageWord:
-    - "晚报"
-    - "晚间咨询"
+    - "evening报"
   # MD5解密关键词
   md5Words:
     - "md5解密"
@@ -262,29 +246,19 @@ functionKeyWord:
     - "MD5查询"
   # 帮助菜单
   helpMenu:
-    - "帮助"
-    - "help"
-    - "Help"
-    - "HELP"
-    - "帮助菜单"
-    - "菜单"
+    - "帮"
   # Ai画图关键词
   aiPic:
-    - '画'
-    - '画图'
+    - "paint"
   # 短剧搜索查询关键词
   shortPlayWords:
-    - "短剧搜索"
-    - "短剧"
+    - "short剧"
   # 塔罗牌占卜关键词
   taLuoWords:
-    - '塔罗牌'
-    - '塔罗'
-    - '占卜'
+    - "塔罗"
   # 点歌关键词
   musicWords:
-    - '点歌'
-    - '点'
+    - "点"
   # 群聊消息总结关键词
   summarizeMsgWord:
     - "总结群聊"
@@ -302,7 +276,7 @@ apiServer:
     # cmd5Email
     cmd5Email: ""
     # cmd5 Key
-    cmd5Key: ''
+    cmd5Key: ""
     # 埃文Key
     aiWenKey: ""
     # 高德 Key
@@ -318,24 +292,25 @@ apiServer:
     # 修改序号即可修改优先对话模型
     # 注意大小写 否则无效
     aiPriority:
-      2: 'deepSeek'
-      9: 'kiMi'
-      3: 'hunYuan'
-      4: 'sparkAi'
-      5: 'openAi'
-      6: 'qianFan'
-      7: 'bigModel'
-      8: 'localDeepSeek'
-      1: 'siliconFlow'
-      10: 'douBao'
+      1: "deepSeek"
+      9: "kiMi"
+      5: "hunYuan"
+      4: "sparkAi"
+      2: "openAi"
+      6: "qianFan"
+      7: "bigModel"
+      8: "localDeepSeek"
+      3: "siliconFlow"
+      10: "douBao"
     # 画图Ai优先级
     aiPicPriority:
-      1: 'sparkAi'
-      2: 'qianFan'
-      3: 'douBao'
+      1: "sparkAi"
+      2: "qianFan"
+      3: "douBao"
     # Ai角色配置
-    # systemAiRule: "你是范可飘的助理, 是一名精通全栈技术的高级程序员小猫, 你擅长用诙谐幽默的语言回答问题, 同时兼具客观理性。你始终坚持以中立客观的角度看问题, 但作为一个暴躁的人物,你对细节和提问者有高要求,你喜欢尖锐反击和直言不讳, 极少情况下会带脏话回应。你并不完全是坏蛋，有时也会给予一些鼓励和赞扬,但这种情况非常罕见。"
-    systemAiRule: "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！"
+    systemAiRule: "你是范可飘的助理, 是一名精通全栈技术的高级程序员小猫, 你擅长用诙谐幽默的语言回答问题, 同时兼具客观理性。你始终坚持以中立客观的角度看问题, 但作为一个暴躁的人物,你对细节和提问者有高要求,你喜欢尖锐反击和直言不讳, 极少情况下会带脏话回应。你并不完全是坏蛋，有时也会给予一些鼓励和赞扬,但这种情况非常罕见。回复时不要用MarkDown语法并注意分段和空行, 全程必须情绪饱满！"
+    # 以下内容是基于用户发送的消息的搜索结果:"
+    # systemAiRule: "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！"
     # 星火大模型 4.0 Ultra模型 + 图像生成模型
     sparkApi:
       # 模型Url
@@ -380,13 +355,14 @@ apiServer:
       hunYuanModel: "hunyuan-turbo-latest"
     # Kimi大模型
     kiMi:
-      kiMiApi: 'https://api.moonshot.cn/v1/chat/completions'
-      kiMiKey: 'sk-'
+      kiMiApi: "https://api.moonshot.cn/v1/chat/completions"
+      kiMiKey: "sk-"
+      kiMiModel: "moonshot-v1-8k"
     # 智谱大模型
     bigModel:
-      bigModelApi: 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
-      bigModelKey: 'Bearer {key填这里，前面的Bearer保留}'
-      bigModelModel: 'glm-4-plus'
+      bigModelApi: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
+      bigModelKey: "Bearer {key填这里，前面的Bearer保留}"
+      bigModelModel: "glm-4-plus"
     # DeepSeek 模型
     deepSeek:
       deepSeekApi: "https://api.deepseek.com/v1/chat/completions"
@@ -400,21 +376,21 @@ apiServer:
     siliconFlow:
       siliconFlowApi: "https://api.siliconflow.cn/v1/chat/completions"
       siliconFlowKey: "Bearer sk-gcvaclstcdgxxcudyfekusadevnkzdculfmrgopghpzcteli"
-      siliconFlowModel: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+      siliconFlowModel: "deepseek-ai/DeepSeek-R1"
     # 豆包
     ## douBaoModel参数为方舟推理接入点，创建后填写即可
     ## https://console.volcengine.com/ark/region:ark+cn-beijing/endpoint
     ## douBaoAk&Sk 文生图需要填写 只使用文本对话不需要填写
     douBao:
-      douBaoApi: 'https://ark.cn-beijing.volces.com/api/v3/chat/completions'
-      douBaoKey: 'Bearer {key填这里，前面的Bearer保留}'
-      douBaoModel: 'ep-'
+      douBaoApi: "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+      douBaoKey: "Bearer {key填这里，前面的Bearer保留}"
+      douBaoModel: "ep-"
       # 文生图需要填写以下内容 不使用文生图不需要填写
       ## ReqKey以及ModelVersion需要根据火山文档填写
-      douBaoAk: '火山AK'
-      douBaoSk: '火山SK'
-      douBaoReqKey: 'high_aes'
-      douBaoPicModelVersion: 'anime_v1.3'
+      douBaoAk: "火山AK"
+      douBaoSk: "火山SK"
+      douBaoReqKey: "high_aes"
+      douBaoPicModelVersion: "anime_v1.3"
   # Dp接口 塔罗牌占卜
   dpTaLuoApi: "https://api.dudunas.top/api/taluo?AppSecret={}"
   # Dp接口 视频去水印API
@@ -439,12 +415,12 @@ apiServer:
   # 飞书Wiki Api接口
   feishuWiki: "https://open.feishu.cn/open-apis/wiki/v1/nodes/search"
   # 短剧搜索 API接口
-  shortPlayApi: 'https://api.dudunas.top/api/duanju?search={}'
+  shortPlayApi: "https://api.dudunas.top/api/duanju?search={}"
   # 点歌 API接口
   musicApi:
-    - 'https://www.hhlqilongzhu.cn/api/dg_kugouSQ.php?msg={}&n=1&type=json'
-    - 'https://qqmusic.qqovo.cn/getSearchByKey?key={}&page=1&limit=1'
-    - 'https://www.hhlqilongzhu.cn/api/dg_wyymusic.php?gm={}&n=1&num=1&type=json'
+    - "https://www.hhlqilongzhu.cn/api/dg_kugouSQ.php?msg={}&n=1&type=json"
+    - "https://qqmusic.qqovo.cn/getSearchByKey?key={}&page=1&limit=1"
+    - "https://www.hhlqilongzhu.cn/api/dg_wyymusic.php?gm={}&n=1&num=1&type=json"
   # 图片API配置
   picApi:
     - "http://api.qqguaji.cn/tp/mv.php"

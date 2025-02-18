@@ -10,6 +10,7 @@ import ApiServer.AiServer.sparkPicApi as sPa
 import FileCache.FileCacheServer as Fcs
 import Config.ConfigServer as Cs
 from OutPut.outPut import op
+from datetime import datetime
 import requests
 import base64
 import time
@@ -89,7 +90,43 @@ class AiDialogue:
         self.aiPriority = configData['apiServer']['aiConfig']['aiPriority']
         self.aiPicPriority = configData['apiServer']['aiConfig']['aiPicPriority']
 
-    def getOpenAi(self, content, messages):
+    # 谷歌搜索
+    api_key = "AIzaSyCuWEgOeX5fuF4O6nBBChnKPlpPurEk0yE"
+    search_engine_id = "2369d51a6b092401e"
+
+    def get_search_results(self, query, api_key, search_engine_id):
+        url = "https://customsearch.googleapis.com/customsearch/v1"
+        params = {
+            "q": query,
+            "key": api_key,  # API Key
+            "cx": search_engine_id,  # 搜索引擎 ID
+            "num": 10  # 获取前5个结果
+        }
+        response = requests.get(url, params=params)
+        results = response.json()
+
+        # 打印完整的 API 响应以调试
+        # print("API Response:", results)
+
+        search_results = ""
+        if "items" in results:  # Google Custom Search API 返回的结果在 "items" 字段中
+            for i, item in enumerate(results["items"]):
+                search_results += f"[webpage {i+1} begin]\n{item['snippet']}\n[webpage {i+1} end]\n"
+            print("谷歌搜索成功")
+        else:
+            search_results = "No results found or API request failed."
+            print("谷歌搜索失败")
+        return search_results
+
+    # 获取当前日期
+    def get_current_date(self):
+        """
+        动态获取当前日期，格式为 YYYY年MM月DD日
+        """
+        now = datetime.now()
+        return now.strftime("%Y年%m月%d日")
+    
+    def getOpenAi(self, content, messages, needs_search=True):
         op(f'[*]: 正在调用OpenAi对话接口... ...')
         """
         Open Ai对话
@@ -101,7 +138,37 @@ class AiDialogue:
         if not self.openAiConfig.get('openAiKey'):
             op(f'[-]: GPT模型未配置, 请检查相关配置!!!')
             return None, []
-        messages.append({"role": "user", "content": f'{content}'})
+        search_answer_zh_template = \
+            '''
+            在回答时，请注意以下几点：
+            - 今天是{cur_date}。
+            - 并非搜索结果的所有内容都与用户的问题密切相关，你需要结合问题，对搜索结果进行甄别、筛选。
+            - 对于列举类的问题（如列举所有航班信息），尽量将答案控制在10个要点以内，并告诉用户可以查看搜索来源、获得完整信息。优先提供信息完整、最相关的列举项；如非必要，不要主动告诉用户搜索结果未提供的内容。
+            - 你需要解读并概括用户的题目要求，选择合适的格式，充分利用搜索结果并抽取重要信息，生成符合用户要求、极具思想深度、富有创造力与专业性的答案。你的创作篇幅需要尽可能延长，对于每一个要点的论述要推测用户的意图，给出尽可能多角度的回答要点，且务必信息量大、论述详尽。
+            - 如果回答很长，请尽量结构化、分段落总结。如果需要分点作答，尽量控制在5个点以内，并合并相关的内容。
+            - 对于客观类的问答，如果问题的答案非常简短，可以适当补充一到两句相关信息，以丰富内容。
+            - 你需要根据用户要求和回答内容选择合适、美观的回答格式，确保可读性强。
+            - 你的回答应该综合多个相关网页来回答，不能重复引用一个网页。
+            - 除非用户要求，否则你回答的语言需要和用户提问的语言保持一致。
+            # 用户消息为：
+            {question}'''
+        # 如果需要搜索，调用 Google 搜索 API 获取结果
+        if needs_search:
+            api_key = "AIzaSyCuWEgOeX5fuF4O6nBBChnKPlpPurEk0yE"
+            search_engine_id = "2369d51a6b092401e"
+            
+            search_results = self.get_search_results(content, api_key, search_engine_id)
+            cur_date = self.get_current_date()  # 这里可以动态获取当前日期
+            search_answer_prompt = search_answer_zh_template.format(
+                search_results=search_results,
+                cur_date=cur_date,
+                question=content
+            )
+            messages.append({"role": "user", "content": search_answer_prompt})
+        else:
+            # 如果不需要搜索，直接使用用户输入
+            messages.append({"role": "user", "content": f'{content}'})
+        # messages.append({"role": "user", "content": f'{content}'})
         data = {
             "model": self.openAiConfig.get('openAiModel'),
             "messages": messages
@@ -121,7 +188,7 @@ class AiDialogue:
             if len(messages) == 21:
                 del messages[1]
                 del messages[2]
-            return assistant_content, messages
+            return assistant_content.replace('*', '').replace('#', '').replace('`', ''), messages
         except Exception as e:
             op(f'[-]: Gpt对话接口出现错误, 错误信息: {e}')
             return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
@@ -426,7 +493,7 @@ class AiDialogue:
             op(f'[-]: BigMode对话接口出现错误, 错误信息: {e}')
             return None, [{"role": "system", "content": f'{self.systemAiRole}'}]
 
-    def getDeepSeek(self, content, messages):
+    def getDeepSeek(self, content, messages, needs_search=True):
         """
         deepSeek
         :param content: 对话内容
@@ -437,7 +504,37 @@ class AiDialogue:
         if not self.deepSeekConfig.get('deepSeekKey'):
             op(f'[-]: deepSeek模型未配置, 请检查相关配置!!!')
             return None, []
-        messages.append({"role": "user", "content": f'{content}'})
+        search_answer_zh_template = \
+            '''
+            - 今天是{cur_date}。
+            - 并非搜索结果的所有内容都与用户的问题密切相关，你需要结合问题，对搜索结果进行甄别、筛选。
+            - 对于列举类的问题（如列举所有航班信息），尽量将答案控制在10个要点以内，并告诉用户可以查看搜索来源、获得完整信息。优先提供信息完整、最相关的列举项；如非必要，不要主动告诉用户搜索结果未提供的内容。
+            - 你需要解读并概括用户的题目要求，选择合适的格式，充分利用搜索结果并抽取重要信息，生成符合用户要求、极具思想深度、富有创造力与专业性的答案。你的创作篇幅需要尽可能延长，对于每一个要点的论述要推测用户的意图，给出尽可能多角度的回答要点，且务必信息量大、论述详尽。
+            - 如果回答很长，请尽量结构化、分段落总结。如果需要分点作答，尽量控制在5个点以内，并合并相关的内容。
+            - 对于客观类的问答，如果问题的答案非常简短，可以适当补充一到两句相关信息，以丰富内容。
+            - 你需要根据用户要求和回答内容选择合适、美观的回答格式，确保可读性强。
+            - 你的回答应该综合多个相关网页来回答，不能重复引用一个网页。
+            - 除非用户要求，否则你回答的语言需要和用户提问的语言保持一致。
+            # 用户消息为：
+            {question}'''
+        # 如果需要搜索，调用 Google 搜索 API 获取结果
+        if needs_search:
+            api_key = "AIzaSyCuWEgOeX5fuF4O6nBBChnKPlpPurEk0yE"
+            search_engine_id = "2369d51a6b092401e"
+            
+            search_results = self.get_search_results(content, api_key, search_engine_id)
+            cur_date = self.get_current_date()  # 这里可以动态获取当前日期
+            search_answer_prompt = search_answer_zh_template.format(
+                search_results=search_results,
+                cur_date=cur_date,
+                question=content
+            )
+            messages.append({"role": "user", "content": search_answer_prompt})
+        else:
+            # 如果不需要搜索，直接使用用户输入
+            messages.append({"role": "user", "content": f'{content}'})
+        # messages.append({"role": "user", "content": f'{content}'})
+
         data = {
             "model": self.deepSeekConfig.get('deepSeekModel'),
             "messages": messages
@@ -515,10 +612,13 @@ class AiDialogue:
             json_data = resp.json()
             assistant_content = json_data['choices'][0]['message']['content']
             messages.append({"role": "assistant", "content": f"{assistant_content}"})
+            # 根据 Model 添加后缀
+            model_suffix = f"\n\nAPI来自: 硅基流动满血离线版R1"
+            assistant_content += model_suffix
             if len(messages) == 21:
                 del messages[1]
                 del messages[2]
-            return assistant_content, messages
+            return assistant_content.replace('#', '').replace('*', '').replace('`', ''), messages
         except Exception as e:
             op(f'[-]: 硅基对话接口出现错误, 错误信息: {e}')
             return None, [{"role": "system", "content": f'{self.systemAiRole}'}]

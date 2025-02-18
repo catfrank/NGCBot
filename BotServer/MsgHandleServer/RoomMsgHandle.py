@@ -58,7 +58,7 @@ class RoomMsgHandle:
             # 娱乐功能
             Thread(target=self.Hf.mainHandle, args=(msg,)).start()
             # 入群欢迎
-            Thread(target=self.JoinRoomWelcome, args=(msg,)).start()
+            # Thread(target=self.JoinRoomWelcome, args=(msg,)).start()
             # 推送群聊和白名单群聊才可以使用群聊总结功能&撤回消息检测功能&发言排行榜功能&定时推送总结
             Thread(target=self.Rmf.mainHandle, args=(msg,)).start()
         # 黑名单群聊功能
@@ -74,7 +74,7 @@ class RoomMsgHandle:
             # 超管功能以及管理功能
             self.AdminFunction(msg)
             # 入群欢迎
-            Thread(target=self.JoinRoomWelcome, args=(msg,)).start()
+            # Thread(target=self.JoinRoomWelcome, args=(msg,)).start()
             # 娱乐功能 和 积分功能
             Thread(target=self.HappyFunction, args=(msg,)).start()
             # 推送群聊才可以使用群聊总结功能&撤回消息检测功能&发言排行榜功能&定时推送总结
@@ -86,7 +86,7 @@ class RoomMsgHandle:
             # 娱乐功能 和 积分功能
             Thread(target=self.HappyFunction, args=(msg,)).start()
             # 入群欢迎
-            Thread(target=self.JoinRoomWelcome, args=(msg,)).start()
+            # Thread(target=self.JoinRoomWelcome, args=(msg,)).start()
 
     def RoomMsgFunction(self, msg):
         """

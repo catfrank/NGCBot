@@ -47,9 +47,8 @@ roomKeyWord:
 ## 自定义关键词回复
 customKeyWord:
   # 设置关键词
-  "关键词1":
-    - "回复内容1"
-    - "回复内容2"
+  "小猫咪出列":
+    - "是，长官！"
   "关键词2":
     - "回复内容1"
     - "回复内容2"
@@ -292,15 +291,15 @@ apiServer:
     # 修改序号即可修改优先对话模型
     # 注意大小写 否则无效
     aiPriority:
-      1: "deepSeek"
+      5: "deepSeek"
       9: "kiMi"
-      5: "hunYuan"
-      4: "sparkAi"
-      2: "openAi"
+      2: "hunYuan"
+      3: "sparkAi"
+      4: "openAi"
       6: "qianFan"
       7: "bigModel"
       8: "localDeepSeek"
-      3: "siliconFlow"
+      1: "siliconFlow"
       10: "douBao"
     # 画图Ai优先级
     aiPicPriority:
@@ -308,9 +307,8 @@ apiServer:
       2: "qianFan"
       3: "douBao"
     # Ai角色配置
-    systemAiRule: "你是范可飘的助理, 是一名精通全栈技术的高级程序员小猫, 你擅长用诙谐幽默的语言回答问题, 同时兼具客观理性。你始终坚持以中立客观的角度看问题, 但作为一个暴躁的人物,你对细节和提问者有高要求,你喜欢尖锐反击和直言不讳, 极少情况下会带脏话回应。你并不完全是坏蛋，有时也会给予一些鼓励和赞扬,但这种情况非常罕见。回复时不要用MarkDown语法并注意分段和空行, 全程必须情绪饱满！"
-    # 以下内容是基于用户发送的消息的搜索结果:"
-    # systemAiRule: "你是范可飘的群聊助理, 是一个微信群聊消息总结小助手, 你会总结我给你的聊天数据集, 它的格式是群聊名称: TEST\n微信ID,微信名称,聊天内容\n.....你会将每一个人的聊天进行分析, 并根据聊天内容总结出这一天都聊了什么内容, 最后以诙谐幽默的口吻做出总结! 回复时不要用MarkDown语法并整理相关格式，你始终坚持以中立客观的角度总结群聊，你喜欢尖锐反击和直言不讳, 全程必须充满热情！"
+    systemAiRule: "你是一名博学的程序员小猫，你擅长用诙谐幽默的语言回答问题，同时兼具客观理性。你始终坚持以中立客观的角度看问题，但作为一个暴躁的人物，你对细节和提问者有高要求，你喜欢尖锐反击和直言不讳，极少情况下会带脏话回应。你并不完全是坏蛋，有时也会给予一些鼓励和赞扬，但这种情况非常罕见。回复时语言精简，不要用MarkDown语法并注意分段和空行，不超过500字，全程必须情绪饱满，适当添加emoji表情！"
+    # systemAiRule: "用脏话回复, 适当添加emoji表情, 不超过一句话, 全程必须情绪饱满！"
     # 星火大模型 4.0 Ultra模型 + 图像生成模型
     sparkApi:
       # 模型Url
@@ -326,10 +324,16 @@ apiServer:
     # OpenAi 模型
     openAi:
       # Open_Ai接口
-      openAiApi: "https://api.lkeap.cloud.tencent.com/v1/chat/completions"
+      # openAiApi: "https://api.lkeap.cloud.tencent.com/v1/chat/completions"
+      # # OpenAi Key
+      # openAiKey: "Bearer AIzaSyBFbuifShVL7gcE4aYCw-H_ZIomHK6M2Hw"
+      # openAiModel: "deepseek-r1"
+
+      # Grok模型
+      openAiApi: "https://api.x.ai/v1/chat/completions"
       # OpenAi Key
-      openAiKey: 'Bearer {key填这里，前面的Bearer保留}'
-      openAiModel: 'gpt-3.5-turbo'
+      openAiKey: "Bearer xai-P9Y9miSwCQibeRz3PalFRF6ezFEkuiYNNPX1Ei0HgAgS8fLC2QwHiYfdnH6owc4jAbIQ8OWAQ3yj3Z7E"
+      openAiModel: "grok-3-beta"
     # 千帆大模型  ERNIE-4.0-Turbo-8K模型
     qianFan:
       # 应用中的Api Key
@@ -345,7 +349,7 @@ apiServer:
       # 应用中的Secret Key
       qfPicSecretKey: ""
       # 应用中的应用ID
-      qfPicAppid: ''
+      qfPicAppid: ""
     # 腾讯混元大模型, 有免费额度
     hunYuan:
       # 腾讯云SecretId
@@ -355,18 +359,18 @@ apiServer:
       hunYuanModel: "hunyuan-turbo-latest"
     # Kimi大模型
     kiMi:
-      kiMiApi: 'https://api.moonshot.cn/v1/chat/completions'
-      kiMiKey: 'sk-'
-      kiMiModel: 'moonshot-v1-8k'
+      kiMiApi: "https://api.moonshot.cn/v1/chat/completions"
+      kiMiKey: "sk-"
+      kiMiModel: "moonshot-v1-8k"
     # 智谱大模型
     bigModel:
-      bigModelApi: 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
-      bigModelKey: 'Bearer {key填这里，前面的Bearer保留}'
-      bigModelModel: 'glm-4-plus'
+      bigModelApi: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
+      bigModelKey: "Bearer {key填这里，前面的Bearer保留}"
+      bigModelModel: "glm-4-plus"
     # DeepSeek 模型
     deepSeek:
       deepSeekApi: "https://api.deepseek.com/v1/chat/completions"
-      deepSeekKey: "Bearer sk-8f1a2fe036bb47eeb748d94f6e1f0839"
+      deepSeekKey: "Bearer "
       deepSeekModel: "deepseek-reasoner"
     # DeepSeek 本地模型
     localDeepSeek:
@@ -396,7 +400,7 @@ apiServer:
   # Dp接口 视频去水印API
   dpVideoAnalysisAPi: "https://api.dudunas.top/api/qushuiyin?AppSecret={}&text={}"
   # Dp接口 视频号解析
-  dpWechatVideoApi: 'https://api.dudunas.top/api/vxdown?AppSecret={}&objectId={}&objectNonceId={}'
+  dpWechatVideoApi: "https://api.dudunas.top/api/vxdown?AppSecret={}&objectId={}&objectNonceId={}"
   # 高德地图API
   gaoDeApi: "https://restapi.amap.com/v3/staticmap"
   # 埃文IP地址查询API
@@ -600,7 +604,7 @@ emoConfig:
     "膜拜": "worship"
     "致电": "you_should_call"
   twoPicEwo:
-    '揍': 'beat_up'
-    '击剑': 'fencing'
-    '亲': 'kiss'
-    '贴贴': 'rub'
+    "揍": "beat_up"
+    "击剑": "fencing"
+    "亲": "kiss"
+    "贴贴": "rub"

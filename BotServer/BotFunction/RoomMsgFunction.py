@@ -49,17 +49,17 @@ class RoomMsgFunction:
                 roomName = getIdName(self.wcf, roomId)
                 msgCount, msgNumberCount = self.Dms.showRoomCount(roomId)
                 msgTypeData = self.Dms.roomMsgTypeRanking(roomId)
-                msg = f'🧑‍今日发言排行统计:\n群聊名称: 【{roomName}】\n📊 当日发言总数: {msgCount} 条\n👥当日发言人数: {msgNumberCount}\n\n📊 数据透视\n'
+                msg = f'今日发言排行统计:\n群聊名称: {roomName}\n📊 当日发言总数: {msgCount} 条\n👥当日发言人数: {msgNumberCount}\n\n'
                 for data in msgTypeData:
                     if data[0] == 1:
-                        msg += f'- 💬文字消息：{data[1]} 条\n'
+                        msg += f'💬文字消息：{data[1]} 条\n'
                     elif data[0] == 3:
-                        msg += f'- 💬图片消息：{data[1]} 条\n'
+                        msg += f'📸图片消息：{data[1]} 条\n'
                     elif data[0] == 47:
-                        msg += f'- 💬表情包消息：{data[1]} 条\n'
+                        msg += f'😊表情包消息：{data[1]} 条\n'
                 roomMsgData = self.Dms.roomMsgRanking(roomId)
                 number = 1
-                msg += '\n\n【发言排行榜】\n'
+                msg += '\n发言排行榜：\n'
                 for data in roomMsgData:
                     msg += f'{number}、「{data[1]}」- {data[2]}条\n'
                     number += 1
